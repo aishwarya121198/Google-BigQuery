@@ -1,0 +1,140 @@
+Query 1:
+ Question:what is the sum of values in employment hours table?
+    we have used SQL function SUM to arrive at the total sum of values under employment_hours_earning table
+Query: SELECT SUM(Value)
+       FROM `bigquery-public-data.bls.employment_hours_earnings`
+
+Output: f0_ 5.001766774096358E11
+
+Query 2: 
+ Question: what is the minimum value of values in  employment_hours_earnings table?
+           we have used SQL function of MIN to find the minimum value of employment_hours_Earnings table 
+Query: SELECT MIN(Value)
+       FROM `bigquery-public-data.bls.employment_hours_earnings`
+Output: f0_ -881.0
+
+Query 3: 
+Question: what is the maximum value of Values in employment_hours_earnings table?
+          we have used SQL MAX function to arrive at the maximum value of employment_hours_earnings.
+
+Query: SELECT MAX(value)
+       FROM `bigquery-public-data.bls.employment_hours_earnings`
+
+Output: f0_1.28813246E8
+
+Query 4:
+Question: what is the count of values in employment_hours_earnings?
+          we used SQL count function to count the values of employment_hours_earnings.
+Query:   SELECT COUNT(Value)
+         FROM `bigquery-public-data.bls.employment_hours_earnings`
+Output: f0_7773848
+
+Query 5:
+Question:  Find pitchspeed between 73 and 80 from baseball games?
+           Using BETWEEN SQL fucntion from 73 and 80
+Query: SELECT pitchSpeed
+       FROM `bigquery-public-data.baseball.games_post_wide` 
+       WHERE pitchSpeed BETWEEN 73 AND 80
+       limit 20
+Output:pitchSpeed
+          74
+          74
+          78
+          75
+          75
+          74
+          74
+          80
+          74
+          74
+          75
+          76
+          74
+          75
+          74
+          76
+          75
+          77
+          74
+          74
+
+Query 6:
+Question:Find the summary of population by zipcode in population_by_zip_2000 table?
+         Using SQL fucntion of COUNT, FROM, & GROUP BY we arrived at the output.
+Query:SELECT COUNT(population),zipcode	
+      FROM `bigquery-public-data.census_bureau_usa.population_by_zip_2000`
+      GROUP BY zipcode
+      limit 10
+Output:f0_	zipcode
+      49	71002
+      49	66061
+      49	78363
+      49	24471
+      49	78024
+      49	94901
+      49	55925
+      49	44251
+      49	68925
+      49	38019
+
+Query 7:
+Question:what is the average of pitch speed in baseball.games_post?
+         Using SQL fucntion of AVG we arrived at the AVERGE pitch speed of baseball games.
+Query: SELECT AVG(pitchSpeed)
+       FROM `bigquery-public-data.baseball.games_post_wide`
+Output:f0_82.44190871369298
+
+Query 8:
+Question: Which are the industries with code as 25?
+Query:SELECT * FROM `bigquery-public-data.bls.employment_hours_earnings_series`
+       WHERE data_type_code = 25
+Output:series_id	supersector_code	industry_code	data_type_code	seasonal	series_title	footnote_codes	begin_year	begin_period	end_year	end_period
+       CES0000000025	0	0	25	S	"All employees, quarterly averages, seasonally adjusted, thousands, total nonfarm, seasonally adjusted"		1939	M03	2019	M12
+       CES0500000025	5	5000000	25	S	"All employees, quarterly averages, seasonally adjusted, thousands, total private, seasonally adjusted"		1939	M03	2019	M12
+       CES0600000025	6	6000000	25	S	"All employees, quarterly averages, seasonally adjusted, thousands, goods-producing, seasonally adjusted"		1939	M03	2019	M12
+       CES0700000025	7	7000000	25	S	"All employees, quarterly averages, seasonally adjusted, thousands, service-providing, seasonally adjusted"		1939	M03	2019	M12
+       CES3000000025	30	30000000	25	S	"All employees, quarterly averages, seasonally adjusted, thousands, manufacturing, seasonally adjusted"		1939	M03	2019	M12
+
+Query 9:
+Question: Which are the top 10 basketball playing teams in USA?
+Query: SELECT table1.code_ncaa, table2.school_ncaa
+       FROM `bigquery-public-data.ncaa_basketball.mbb_teams`  as table1
+       join `bigquery-public-data.ncaa_basketball.mbb_teams` as table2
+       on (table1.school_ncaa = table2.school_ncaa)
+       order by `school_ncaa`asc
+       limit 10
+Output:
+code_ncaa	school_ncaa
+     26172	A&M-Corpus Christi
+       2	Abilene Christian
+      721	Air Force
+       5	Akron
+       8	Alabama
+       6	Alabama A&M
+       7	Alabama St.
+      14	Albany (NY)
+      17	Alcorn
+      23	American
+
+Query 10:
+Question: Which are the top 10 basketball teams and their turners name in USA?
+Query:SELECT table1.code_ncaa, table2.school_ncaa, table3.turner_name
+      FROM `bigquery-public-data.ncaa_basketball.mbb_teams`  as table1
+      join `bigquery-public-data.ncaa_basketball.mbb_teams` as table2
+      on (table1.school_ncaa = table2.school_ncaa)
+      join `bigquery-public-data.ncaa_basketball.mbb_teams` as table3
+      on (table2.school_ncaa = table3.school_ncaa)
+      order by `school_ncaa`asc
+      limit 10
+
+Output:code_ncaa	school_ncaa	        turner_name
+           26172	A&M-Corpus Christi	Texas A&M University-Corpus Christi
+               2	Abilene Christian	Abilene Christian University
+             721	Air Force	        U.S. Air Force Academy
+               5	Akron	                University of Akron
+               8	Alabama	                University of Alabama
+               6	Alabama A&M	        Alabama A&M University
+               7	Alabama St.	        Alabama State University
+              14	Albany (NY)	        University at Albany
+              17	Alcorn	                Alcorn State University
+              23	American	        American University
